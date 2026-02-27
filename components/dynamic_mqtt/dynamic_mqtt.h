@@ -5,15 +5,20 @@
 #include "esphome/core/helpers.h"
 #include "esphome/core/log.h"
 
-#include <WiFiClientSecure.h>
-#include <PubSubClient.h>
-
-#ifdef ARDUINO_ARCH_ESP8266
-  #include <BearSSLHelpers.h>
-  #include <WiFiClientSecureBearSSL.h>
-  #include <CertStoreBearSSL.h>
-  #include <BearSSL.h>
+#ifdef USE_ESP32
+  #include <WiFi.h>
+  #include <WiFiClientSecure.h>
 #endif
+
+#ifdef USE_ESP8266
+  #include <ESP8266WiFi.h>
+  #include <WiFiClientSecureBearSSL.h>
+  namespace BearSSL {
+    class X509List;
+  }
+#endif
+
+#include <PubSubClient.h>
 
 namespace esphome {
 namespace dynamic_mqtt {
