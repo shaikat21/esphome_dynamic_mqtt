@@ -75,7 +75,7 @@ class DynamicMqttComponent : public Component {
   uint32_t last_connect_attempt_{0};
   uint32_t last_loop_ms_{0};
 
-#ifdef ARDUINO_ARCH_ESP8266
+#ifdef USE_ESP8266
   std::unique_ptr<BearSSL::X509List> trust_anchor_;
   BearSSL::WiFiClientSecure wifi_secure_;
 #else
